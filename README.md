@@ -5,8 +5,8 @@
 
 **어떠한 데이터셋와 도구 및 기술을 사용했는지에 대한 설명과 엔드유저에게 보이는 웹서비스에 대한 소개**
 
-  - 사용하려는 데이터(제안된 데이터 중 하나 또는 선택한 다른 데이터 세트)를 명시, 이에 대한 설명
-  [시간-지역별 배달건수](https://bdp.kt.co.kr/invoke/SOKBP2603/?goodsCode=KGUTIMEORDER)
+  - 사용하려는 데이터(제안된 데이터 중 하나 또는 선택한 다른 데이터 세트)를 명시, 이에 대한 설명  
+  [시간-지역별 배달건수](https://bdp.kt.co.kr/invoke/SOKBP2603/?goodsCode=KGUTIMEORDER)  
   [코로나 확진자 데이터](http://data.seoul.go.kr/dataList/OA-20279/S/1/datasetView.do)
   - 기술 스택 (python, pandas, jupyter, MySQL, jinja2 등) 
   - 사용된 라이브러리 (numpy, matplotlib, seaborn 등)
