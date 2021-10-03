@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, url_for, redirect
 from app import db
 from models.user import User
 
@@ -12,10 +12,14 @@ def index():
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
         name = request.form['name']
+        user = User.query.filter(User.user_id == user_id).first()
 
-        user = User(user_id, user_pw, name)
-        
-        db.session.add(user)
-        db.session.commit()
+        if not user:
+            new_user = User(user_id, user_pw, name)
+            
+            db.session.add(new_user)
+            db.session.commit()
+            
+            return redirect(url_for('login.index'))
 
-        return jsonify({'result':'success'})
+        return jsonify({'result': 'fail'})
