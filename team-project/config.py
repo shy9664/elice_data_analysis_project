@@ -1,0 +1,6 @@
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@127.0.0.1:3306/team_project'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
