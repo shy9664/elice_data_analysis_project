@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request, jsonify, url_for, redirect
+from flask import Blueprint, render_template, request, jsonify
+
+from flask_jwt_extended import create_access_token
 
 from app import db
 from models.user import User
@@ -16,6 +18,11 @@ def index():
         user = User.query.filter((User.user_id == user_id) & (User.user_pw == user_pw)).first()
 
         if user :
-            return redirect(url_for('main.index', name=user.name))
+            user_info = {'user_id': user.user_id, 'name': user.name}
+
+            access_token = create_access_token(identity=user_info)
+
+            return jsonify(result='success', access_token=access_token)
         
         return jsonify({'result':'fail'})
+
