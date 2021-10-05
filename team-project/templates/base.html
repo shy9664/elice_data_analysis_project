@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <title>데이터 분석 프로젝트</title>
+    <script>
+        function logout(event) {
+            event.preventDefault()
+            $.removeCookie('access_token')
+            $.removeCookie('user_name')
+            window.location.href = '/login'
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href='/'>메인</a></li>
+            {% if request.cookies.get('access_token') is none %}
+            <li><a href='/register'>회원가입</a></li>
+            <li><a href='/login'>로그인</a></li>
+            {% else %}
+            <li><a href='#' onclick="logout(event)">로그아웃</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+<p id='loggedInUser'></p>
+{% block content %}
+{% endblock %}
+</body>
+{% block scripts %}
+{% endblock %}
+<script>
+    let name = $.cookie('user_name')
+    showName = document.getElementById('loggedInUser')
+    showName.innerText = `${name ? name : '비회원'} 님 안녕하세요!`
+</script>
+</html>
