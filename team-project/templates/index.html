@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>홈 페이지</title>
 </head>
 <body>
-    <p>홈 페이지 내용</p>
-    <p>로그인이 필요한 서비스입니다.</p>
-    <a href= "login">로그인창으로</a><br>
-    <a href="register">회원가입</a>
+    <button onclick=dataAnalyze()>(로그인 유저만 사용가능한 데이터 분석 기능)</button>
+    <button onclick=logout()>로그아웃</button>
 </body>
+<script>
+    function dataAnalyze() {
+        let access_token = $.cookie('access_token');
+        $.ajax({
+                type:"POST",
+                url:"/",
+                headers:{
+                Authorization: `Bearer ${access_token}`
+                },
+            success: function(response) {
+                if (response.result == "success") {
+                    console.log(response.jwt)
+                }
+            },
+            error:function(error){
+                alert("토큰이 올바르지 않습니다!");
+            }
+        });
+    }
+    function logout() {
+        $.removeCookie('access_token')
+        window.location.reload()
+    }
+</script>
 </html>
