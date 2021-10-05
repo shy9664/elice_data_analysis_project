@@ -22,7 +22,7 @@ def index():
 
             access_token = create_access_token(identity=user_info)
 
-            return jsonify(result='success', access_token=access_token)
+            return jsonify(result='success', access_token=access_token, user_name=user.name)
         
         return jsonify({'result':'fail'})
 
