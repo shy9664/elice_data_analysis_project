@@ -1,0 +1,19 @@
+from app import db
+
+
+class Article(db.Model):
+    __tablename__ = 'article'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text(), nullable=False)
+    create_date = db.Column(db.DateTime(), nullable=False)
+
+
+    def __init__(self, user_id, name, title, content, create_date):
+        self.user_id = user_id
+        self.name = name
+        self.title = title
+        self.content = content
+        self.create_date = create_date

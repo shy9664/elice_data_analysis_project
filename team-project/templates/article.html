@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block headscripts %}
+<script>
+    function answer(event) {
+        let access_token = $.cookie('access_token');
+        let articleId = document.getElementById('article_id').innerText
+        let text = document.getElementById('content').value
+        $.ajax({
+            type:"POST",
+            url:`/article/${articleId}/answer`,
+            headers:{
+            Authorization: `Bearer ${access_token}`
+            },
+            contentType : "application/json",
+            data: JSON.stringify({text:text})
+            ,
+            success: function(response) {
+                if (response.result == "success") {
+                    window.location.reload()
+                    alert('답글 작성이 완료되었습니다')
+                }
+            },
+            error:function(error){
+                alert("답글 작성 실패");
+                window.location.reload()
+            }
+        });
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<p id='article_id'>{{article.id}}</p>
+<h2>제목: {{ article.title }}</h2>
+
+<div>
+    <div>
+        작성자: {{article.name}}
+    </div>
+    <div>
+        내용: {{article.content}}
+    </div><br>
+    <div>
+        작성 일자: {{article.create_date}}
+    </div>    
+</div><br>
+
+<h5>이 글에 대한 {{ article.answer_set|length }}개의 답글이 있습니다.</h5>
+{% for answer in article.answer_set %}
+<div>
+    <div>
+        <div>
+            번호: {{ loop.index }}
+        </div>
+        <div>
+            작성자: {{answer.name }}
+        </div>
+        <div>
+            내용: {{ answer.content }}
+        </div>
+        <div>
+            작성 일자: {{answer.create_date}}
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div>
+    <textarea id='content' rows=10></textarea>
+    <button onclick=answer(event)>답글 등록</button>
+</div>
+{% endblock %}
+

@@ -17,11 +17,11 @@
             },
             success: function(response) {
                 if (response.result == "success") {
-                    alert('데이터 분석 요청 완료')
+                    alert('데이터 분석 요청 완료! 시간이 소요됩니다.')
                 }
             },
             error:function(error){
-                alert("로그인 후 이용해주세요");
+                alert("로그인 후 이용해주세요!");
                 window.location.href = '/login'
             }
         });
