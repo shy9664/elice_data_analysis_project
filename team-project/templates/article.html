@@ -1,35 +1,5 @@
 {% extends 'base.html' %}
 
-{% block headscripts %}
-<script>
-    function answer(event) {
-        let access_token = $.cookie('access_token');
-        let articleId = document.getElementById('article_id').innerText
-        let text = document.getElementById('content').value
-        $.ajax({
-            type:"POST",
-            url:`/article/${articleId}/answer`,
-            headers:{
-            Authorization: `Bearer ${access_token}`
-            },
-            contentType : "application/json",
-            data: JSON.stringify({text:text})
-            ,
-            success: function(response) {
-                if (response.result == "success") {
-                    window.location.reload()
-                    alert('답글 작성이 완료되었습니다')
-                }
-            },
-            error:function(error){
-                alert("답글 작성 실패");
-                window.location.reload()
-            }
-        });
-    }
-</script>
-{% endblock %}
-
 {% block content %}
 
 <p id='article_id'>{{article.id}}</p>
@@ -67,8 +37,38 @@
 </div>
 {% endfor %}
 <div>
-    <textarea id='content' rows=10></textarea>
-    <button onclick=answer(event)>답글 등록</button>
+    <textarea id='content' rows='10'></textarea>
+    <button onclick='answer()'>답글 등록</button>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function answer() {
+        let access_token = $.cookie('access_token');
+        let articleId = document.getElementById('article_id').innerText
+        let content = document.getElementById('content').value
+        $.ajax({
+            type:"POST",
+            url:`/article/${articleId}/answer`,
+            headers:{
+            Authorization: `Bearer ${access_token}`
+            },
+            contentType : "application/json",
+            data: JSON.stringify({content:content})
+            ,
+            success: function(response) {
+                if (response.result == "success") {
+                    window.location.reload()
+                    alert('답글 작성이 완료되었습니다')
+                }
+            },
+            error:function(error){
+                alert("답글 작성 실패");
+                window.location.reload()
+            }
+        });
+    }
+</script>
 {% endblock %}
 

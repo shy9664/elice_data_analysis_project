@@ -28,5 +28,29 @@
         {% endif %}
         </tbody>
     </table>
+    <button onclick="register()">게시글 등록</button>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    function register() {
+        let access_token = $.cookie('access_token');
+        $.ajax({
+            type:"GET",
+            url:`/board/create`,
+            headers:{
+            Authorization: `Bearer ${access_token}`
+            },
+            success: function(response) {
+                if (response.result == "success") {
+                    location.href = '/article/create'
+                }
+            },
+            error:function(error){
+                alert('로그인 후 이용하세요')
+                window.location.reload()
+            }
+        });
+    }
+</script>
 {% endblock %}
