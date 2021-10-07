@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         {% if article_list %}
-        {% for article in article_list %}
+        {% for article in article_list.items %}
         <tr>
             <td>{{ loop.index }}</td>
             <td><a href='/article/{{ article.id }}'>{{article.title}}</a></td>
@@ -28,6 +28,45 @@
         {% endif %}
         </tbody>
     </table>
+    <div>
+        <ul>
+            {% if article_list.has_prev %}
+            <li>
+                <a href="?page={{ article_list.prev_num}}">이전</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#" tabindex='-1' aria-disabled="true">이전</a>
+            </li>
+            {% endif %}
+            {% for page_num in article_list.iter_pages() %}
+                {% if page_num %}
+                    {% if page_num != article_list.page %}
+                    <li>
+                        <a href="?page={{ page_num }}">{{ page_num }}</a>
+                    </li>
+                    {% else %}
+                    <li aria-current="page">
+                        <a href="#">{{ page_num }}</a>
+                    </li>
+                    {% endif %}
+                {% else %}
+                    <li>
+                        <a href="#">...</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if article_list.has_next %}
+            <li>
+                <a href="?page={{ article_list.next_num }}">다음</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
     <button onclick="register()">게시글 등록</button>
 </div>
 {% endblock %}

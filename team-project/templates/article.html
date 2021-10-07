@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<p id='article_id'>{{article.id}}</p>
+<div>
+    <input id='article_id' type='hidden' value='{{ article.id }}' disabled>
+</div>
 <h2>제목: {{ article.title }}</h2>
-
 <div>
     <div>
         작성자: {{article.name}}
@@ -22,7 +22,7 @@
 <div>
     <div>
         <div>
-            번호: {{ loop.index }}
+            {{ loop.index }} 번째 답글
         </div>
         <div>
             작성자: {{answer.name }}
@@ -46,8 +46,9 @@
 <script>
     function answer() {
         let access_token = $.cookie('access_token');
-        let articleId = document.getElementById('article_id').innerText
+        let articleId = document.getElementById('article_id').value
         let content = document.getElementById('content').value
+        console.log(articleId, content)
         $.ajax({
             type:"POST",
             url:`/article/${articleId}/answer`,
