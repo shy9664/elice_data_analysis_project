@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% for message in get_flashed_messages() %}
+<div>
+    <p>{{ message }}</p>
+</div>
+{% endfor %}
 <form action="/register" method="post">
     아이디 :
     <input type="text" id='user_id' name="user_id" autocomplete="on" />

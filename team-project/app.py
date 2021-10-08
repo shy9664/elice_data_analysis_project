@@ -11,7 +11,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    
+    app.secret_key = 'secret_key_for_flash'
 
     app.config.from_object(config)
     db.init_app(app)
