@@ -17,7 +17,7 @@
     </div>    
 </div><br>
 
-<h5>이 글에 대한 {{ article.answer_set|length }}개의 답글이 있습니다.</h5>
+<p><strong>이 글에 대한 {{ article.answer_set|length }}개의 답글이 있습니다.</strong></p>
 {% for answer in article.answer_set %}
 <div>
     <div>

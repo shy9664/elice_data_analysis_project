@@ -15,8 +15,12 @@
         {% if article_list %}
         {% for article in article_list.items %}
         <tr>
-            <td>{{ loop.index }}</td>
-            <td><a href='/article/{{ article.id }}'>{{article.title}}</a></td>
+            <td>{{ article_list.total - ((article_list.page-1) * article_list.per_page) - loop.index0 }}</td>
+            <td><a href='/article/{{ article.id }}'>{{article.title}}</a>
+                {% if article.answer_set|length > 0 %}
+                <span> [{{article.answer_set|length}}]</span>
+                {% endif %}
+            </td>
             <td>{{ article.name }}</td>
             <td>{{ article.create_date }}</td>
         </tr>
