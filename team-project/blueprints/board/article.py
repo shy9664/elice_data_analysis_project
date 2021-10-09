@@ -30,8 +30,26 @@ def create():
         title = request.json['title']
         content = request.json['content']
         new_article = Article(user_id, name, title, content, datetime.now())
-        print(user_id, name, title, content)
-        print(new_article)
         db.session.add(new_article)
         db.session.commit()
         return jsonify(result='success')
+
+@article.route('/create', methods=['PATCH'])
+@jwt_required()
+def update():
+    modified_content = request.json['modifiedContent']
+    article_id = request.json['article_id']
+    print(article_id)
+    edited_article = Article.query.filter(Article.id == article_id).first()
+    edited_article.content = modified_content
+    db.session.commit()
+    return jsonify(result='success')
+
+@article.route('/create', methods=['DELETE'])
+@jwt_required()
+def delete():
+    article_id = request.json['article_id']
+    delete_article = Article.query.filter(Article.id == article_id).first()
+    db.session.delete(delete_article)
+    db.session.commit()
+    return jsonify(result='success')

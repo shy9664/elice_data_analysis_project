@@ -27,6 +27,7 @@
                 if (response.result == "success") {
                     document.cookie=`access_token=${response.access_token}; max-age=900`
                     document.cookie=`user_name=${response.user_name}; max-age=900`
+                    document.cookie=`user_id=${response.user_id}; max-age=900`
                     window.location.href = '/';
                     alert('로그인 성공')
                 } else {

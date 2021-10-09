@@ -20,7 +20,6 @@
         let name = $.cookie('user_name')
         let title = document.getElementById('title').value
         let content = document.getElementById('content').value
-        console.log(access_token, name, title, content)
         $.ajax({
             type:"POST",
             url:'/article/create',

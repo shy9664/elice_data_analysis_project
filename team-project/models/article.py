@@ -9,11 +9,13 @@ class Article(db.Model):
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
+    update_date = db.Column(db.DateTime(), nullable=True)
 
 
-    def __init__(self, user_id, name, title, content, create_date):
+    def __init__(self, user_id, name, title, content, create_date, update_date=None):
         self.user_id = user_id
         self.name = name
         self.title = title
         self.content = content
         self.create_date = create_date
+        self.update_date = update_date

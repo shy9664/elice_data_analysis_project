@@ -20,7 +20,7 @@ def index():
         if user :
             user_info = {'user_id': user.user_id, 'name': user.name}
             access_token = create_access_token(identity=user_info)
-            return jsonify(result='success', access_token=access_token, user_name=user.name)
+            return jsonify(result='success', access_token=access_token, user_name=user.name, user_id=user.user_id)
             
         return jsonify({'result':'fail'})
 
