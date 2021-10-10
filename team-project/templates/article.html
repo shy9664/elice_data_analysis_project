@@ -16,6 +16,11 @@
     <div>
         작성 일자: {{article.create_date}}
     </div>
+    {% if article.update_date %}
+    <div>
+        수정 일자: {{ article.update_date }}
+    </div>
+    {% endif %}
     <div>
         <button id='modifyArticle' onclick='modifyArticle()'>수정</button>    
         <button id='removeArticle' onclick='removeArticle()'>삭제</button>

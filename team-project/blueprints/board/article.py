@@ -42,6 +42,7 @@ def update():
     print(article_id)
     edited_article = Article.query.filter(Article.id == article_id).first()
     edited_article.content = modified_content
+    edited_article.update_date = datetime.now()
     db.session.commit()
     return jsonify(result='success')
 
