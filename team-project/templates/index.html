@@ -8,12 +8,11 @@
 {% block scripts %}
 <script>
     function dataAnalyze() {
-        let access_token = $.cookie('access_token');
         $.ajax({
             type:"POST",
             url:"/",
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             success: function(response) {
                 if (response.result == "success") {

@@ -16,15 +16,14 @@
 {% block scripts %}
 <script>
     function writeArticle() {
-        let access_token = $.cookie('access_token');
         let name = $.cookie('user_name')
         let title = document.getElementById('title').value
         let content = document.getElementById('content').value
         $.ajax({
             type:"POST",
             url:'/article/create',
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             contentType : "application/json",
             data: JSON.stringify({name: name, title: title, content: content})

@@ -82,8 +82,8 @@
         $.ajax({
             type:"PATCH",
             url:'/article/create',
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             contentType : "application/json",
             data: JSON.stringify({modifiedContent: modifiedContent, article_id: article_id})
@@ -111,12 +111,13 @@
         $.ajax({
             type:"DELETE",
             url:'/article/create',
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             contentType : "application/json",
             data: JSON.stringify({article_id: article_id})
             ,
+            
             success: function(response) {
                 if (response.result == "success") {
                     alert('게시글 삭제 성공')
@@ -138,12 +139,12 @@
         $.ajax({
             type:"POST",
             url:`/article/${articleId}/answer`,
-            headers:{
-            Authorization: `Bearer ${access_token}`
-            },
             contentType : "application/json",
             data: JSON.stringify({content:content})
             ,
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
+            },
             success: function(response) {
                 if (response.result == "success") {
                     window.location.reload()
