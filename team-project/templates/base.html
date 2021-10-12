@@ -18,7 +18,7 @@
             {% else %}
             <li><a href='#' onclick="logout(event)">로그아웃</a></li>
             {% endif %}
-            <li><a href='/board'>게시판</a></li>
+            <li><a href='{{ url_for("board.index") }}'>게시판</a></li>
         </ul>
     </nav>
 <h3 id='loggedInUser'></h3>
