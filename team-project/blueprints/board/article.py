@@ -32,7 +32,8 @@ def create():
         new_article = Article(user_id, name, title, content, datetime.now())
         db.session.add(new_article)
         db.session.commit()
-        return jsonify(result='success')
+        new_article = Article.query.order_by(Article.create_date.desc()).all()[0]
+        return jsonify(result='success', new_article_id=new_article.id)
 
 @article.route('/create', methods=['PATCH'])
 @jwt_required()

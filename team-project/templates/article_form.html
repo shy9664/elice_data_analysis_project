@@ -30,7 +30,7 @@
             ,
             success: function(response) {
                 if (response.result == "success") {
-                    location.href = '/board' // 작성된 게시글의 페이지로 가도록.. 
+                    location.replace(`/article/${response.new_article_id}`) // 작성된 게시글의 페이지로 가도록.. 
                     alert('게시글 작성이 완료되었습니다')
                 }
             },
