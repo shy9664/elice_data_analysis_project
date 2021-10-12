@@ -38,3 +38,10 @@ def refresh_token():
     res.set_cookie('access_token_cookie', new_access_token, httponly=True)
     return res
 
+@login.route('/logout', methods=['GET'])
+@jwt_required()
+def logout():
+    res = jsonify(result='success')
+    res.delete_cookie('refresh_token_cookie')
+    res.delete_cookie('access_token_cookie')
+    return res
