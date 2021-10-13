@@ -34,9 +34,9 @@
             success: function(response) {
                 if (response.result == "success") {
                     alert('로그아웃 성공')
-                    document.cookie = `user_name =; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=localhost; path=/;`
-                    document.cookie = `user_id =; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=localhost; path=/;`      
-                    document.cookie = `csrf_access_token =; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=localhost; path=/;`
+                    document.cookie = `user_name =; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`
+                    document.cookie = `user_id =; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`      
+                    document.cookie = `csrf_access_token =; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;`
                     location.href = '/login'
                 }
             },

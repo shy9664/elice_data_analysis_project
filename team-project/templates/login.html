@@ -25,9 +25,9 @@
             },
             success: function(response) {
                 if (response.result == "success") {
-                    document.cookie=`user_name=${response.user_name}; domain=localhost; path=/;`
-                    document.cookie=`user_id=${response.user_id}; domain=localhost; path=/;`
-                    document.cookie=`csrf_access_token=${response.csrf_access_token}`
+                    document.cookie=`user_name=${response.user_name}; path=/;`
+                    document.cookie=`user_id=${response.user_id}; path=/;`
+                    document.cookie=`csrf_access_token=${response.csrf_access_token}; path=/;`
                     window.location.href = '/';
                     alert('로그인 성공')
                 } else {
