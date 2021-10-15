@@ -1,14 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 페이지</title>
-</head>
-<body>
-    <p>id : <input type="text" name = "userid"></p>
-    <p>password : <input type="password" name = "password"></p>
-    <p>아이디와 비밀번호 회원가입을 진행하세요.<br> <input type = "submit" value = "회원가입"/> </p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+<div>
+    <p>{{ message }}</p>
+</div>
+{% endfor %}
+<div class="registercss">
+    <form action="/register" method="post">
+        아이디 :
+        <input type="text" id='user_id' name="user_id" autocomplete="on" placeholder="아이디를 입력해주세요." class="textf"/>
+        비밀번호 :
+        <input type="password" id='user_pw' name="user_pw" autocomplete="off" placeholder="아이디를 입력해주세요." class="textf"/>
+        이름 :
+        <input type="text" id='name' name="name" autocomplete="on" placeholder="아이디를 입력해주세요." class="textf"/>
+        <div class="wrap">
+            <input type='submit' value = '회원가입' />
+        </div>
+    </form>
+</div>
+{% endblock %}
+

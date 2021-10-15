@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+    background-color: #C0C0C0;
+}
+.login-form{
+    width: 300px;
+    background-color: #eeeff1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    border-radius: 5px;
+    padding: 20px;
+}
+.textf{
+    font-size: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.registercss{
+        width: 300px;
+        background-color: #eeeff1;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        border-radius: 5px;
+        padding: 20px;
+}
+    a:not(#except) {
+        -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        display: block;
+        margin: 5px auto;
+        max-width: 130px;
+        text-decoration: none;
+        border-radius: 4px;
+        padding: 10px 30px;
+        text-align: center;
+}
+    a.button2 {
+        color: rgba(30, 22, 54, 0.6);
+        box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    }
+
+    a.button2:hover {
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+    }
+
+table {
+    width: 600px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+td,th{
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+    padding: 5px;
+}
+
+th{
+    background-color: gray;
+    color: #fff;
+}
+.page_wrap{
+    text-align: center;
+    font-size:0;
+}
+
+.mon{
+    text-align: center;
+}
+div img:not(.mo) {
+    color: blue;
+}

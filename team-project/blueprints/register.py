@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, url_for, redirect
+from flask import Blueprint, render_template, request,url_for, redirect, flash
 from app import db
 from models.user import User
 
@@ -8,6 +8,7 @@ register = Blueprint('register', __name__)
 def index():
     if request.method == 'GET':
         return render_template('register.html')
+
     else:
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
@@ -20,6 +21,8 @@ def index():
             db.session.add(new_user)
             db.session.commit()
             
-            return redirect(url_for('login.index'))
+            return render_template('login.html')  
 
-        return jsonify({'result': 'fail'})
+        else:
+            flash('이미 존재하는 아이디입니다. 다시 입력해주세요')
+            return render_template('register.html')
