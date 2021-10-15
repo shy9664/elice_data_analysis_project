@@ -47,7 +47,6 @@ def create():
 def update():
     modified_content = request.json['modifiedContent']
     article_id = request.json['article_id']
-    print(article_id)
     edited_article = Article.query.filter(Article.id == article_id).first()
     edited_article.content = modified_content
     edited_article.update_date = datetime.now()
