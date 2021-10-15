@@ -33,10 +33,11 @@ def create():
         name = request.form['name']
         title = request.form['title']
         content = request.form['content']
-        image = request.files['image']
-        image_location = 'static/uploads/' + secure_filename(image.filename)
-        image.save(image_location)
-        new_article = Article(user_id, name, title, content, datetime.now(), image='../'+image_location)
+        image = request.files['image'] if request.files else None
+        if image :
+            image_location = 'static/uploads/' + secure_filename(image.filename)
+            image.save(image_location)
+        new_article = Article(user_id, name, title, content, datetime.now(), image='../'+image_location if image else None)
         db.session.add(new_article)
         db.session.commit()
         new_article = Article.query.order_by(Article.create_date.desc()).all()[0]
