@@ -36,6 +36,8 @@ def create_app():
 
     app.config['JWT_SECRET_KEY'] = 'jwt_secret_key'
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = config.expires_access
+    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = config.expires_refresh
+    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     JWTManager(app)
 
     return app

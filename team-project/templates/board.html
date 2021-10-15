@@ -77,16 +77,13 @@
 {% block scripts %}
 <script>
     function register() {
-        let access_token = $.cookie('access_token');
         $.ajax({
             type:"GET",
             url:`/board/create`,
-            headers:{
-            Authorization: `Bearer ${access_token}`
-            },
             success: function(response) {
                 if (response.result == "success") {
                     location.href = '/article/create'
+                    alert('등록하러 갑시다')
                 }
             },
             error:function(error){

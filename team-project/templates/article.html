@@ -13,9 +13,20 @@
     <div id='article_content'>
         {{article.content}}
     </div><br>
+    {% if article.image %}
+    <div>
+        <p>아래는 이 게시글에 첨부된 파일입니다</p>
+        <img src='{{article.image}}'>
+    </div>
+    {% endif %}
     <div>
         작성 일자: {{article.create_date}}
     </div>
+    {% if article.update_date %}
+    <div>
+        수정 일자: {{ article.update_date }}
+    </div>
+    {% endif %}
     <div>
         <button id='modifyArticle' onclick='modifyArticle()'>수정</button>    
         <button id='removeArticle' onclick='removeArticle()'>삭제</button>
@@ -77,8 +88,8 @@
         $.ajax({
             type:"PATCH",
             url:'/article/create',
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             contentType : "application/json",
             data: JSON.stringify({modifiedContent: modifiedContent, article_id: article_id})
@@ -106,12 +117,13 @@
         $.ajax({
             type:"DELETE",
             url:'/article/create',
-            headers:{
-            Authorization: `Bearer ${access_token}`
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
             },
             contentType : "application/json",
             data: JSON.stringify({article_id: article_id})
             ,
+            
             success: function(response) {
                 if (response.result == "success") {
                     alert('게시글 삭제 성공')
@@ -133,12 +145,12 @@
         $.ajax({
             type:"POST",
             url:`/article/${articleId}/answer`,
-            headers:{
-            Authorization: `Bearer ${access_token}`
-            },
             contentType : "application/json",
             data: JSON.stringify({content:content})
             ,
+            headers: {
+                'X-CSRF-TOKEN': $.cookie('csrf_access_token')
+            },
             success: function(response) {
                 if (response.result == "success") {
                     window.location.reload()
