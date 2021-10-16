@@ -6,12 +6,14 @@ from flask_jwt_extended import JWTManager
 
 import config
 
+from secret import *
+
 db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = 'secret_key_for_flash'
+    app.secret_key = app_secret
 
     app.config.from_object(config)
     db.init_app(app)
@@ -34,7 +36,7 @@ def create_app():
     app.register_blueprint(article)
     app.register_blueprint(answer)
 
-    app.config['JWT_SECRET_KEY'] = 'jwt_secret_key'
+    app.config['JWT_SECRET_KEY'] = jwt_secret
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = config.expires_access
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = config.expires_refresh
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
@@ -44,4 +46,4 @@ def create_app():
 
 
 if __name__ == '__main__' :
-    create_app().run(debug=True)
+    create_app().run()
